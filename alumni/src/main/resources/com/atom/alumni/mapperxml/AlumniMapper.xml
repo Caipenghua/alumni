@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atom.alumni.mapper.AlumniMapper">
+  <resultMap id="BaseResultMap" type="com.atom.alumni.domain.Alumni">
+    <!--@mbg.generated-->
+    <!--@Table alumni-->
+    <id column="alumni_number" jdbcType="VARCHAR" property="alumniNumber" />
+    <result column="alumni_name" jdbcType="VARCHAR" property="alumniName" />
+    <result column="alumni_gender" jdbcType="CHAR" property="alumniGender" />
+    <result column="alumni_grade" jdbcType="CHAR" property="alumniGrade" />
+    <result column="alumni_major" jdbcType="VARCHAR" property="alumniMajor" />
+    <result column="alumni_city" jdbcType="VARCHAR" property="alumniCity" />
+    <result column="alumni_phone" jdbcType="VARCHAR" property="alumniPhone" />
+    <result column="alumni_mail" jdbcType="VARCHAR" property="alumniMail" />
+    <result column="alumni_company" jdbcType="VARCHAR" property="alumniCompany" />
+    <result column="alumni_motto" jdbcType="VARCHAR" property="alumniMotto" />
+    <result column="alumni_class" jdbcType="INTEGER" property="alumniClass" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    alumni_number, alumni_name, alumni_gender, alumni_grade, alumni_major, alumni_city, 
+    alumni_phone, alumni_mail, alumni_company, alumni_motto, alumni_class
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from alumni
+    where alumni_number = #{alumniNumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from alumni
+    where alumni_number = #{alumniNumber,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.atom.alumni.domain.Alumni">
+    <!--@mbg.generated-->
+    insert into alumni (alumni_number, alumni_name, alumni_gender, 
+      alumni_grade, alumni_major, alumni_city, 
+      alumni_phone, alumni_mail, alumni_company, 
+      alumni_motto, alumni_class)
+    values (#{alumniNumber,jdbcType=VARCHAR}, #{alumniName,jdbcType=VARCHAR}, #{alumniGender,jdbcType=CHAR}, 
+      #{alumniGrade,jdbcType=CHAR}, #{alumniMajor,jdbcType=VARCHAR}, #{alumniCity,jdbcType=VARCHAR}, 
+      #{alumniPhone,jdbcType=VARCHAR}, #{alumniMail,jdbcType=VARCHAR}, #{alumniCompany,jdbcType=VARCHAR}, 
+      #{alumniMotto,jdbcType=VARCHAR}, #{alumniClass,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atom.alumni.domain.Alumni">
+    <!--@mbg.generated-->
+    insert into alumni
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="alumniNumber != null">
+        alumni_number,
+      </if>
+      <if test="alumniName != null">
+        alumni_name,
+      </if>
+      <if test="alumniGender != null">
+        alumni_gender,
+      </if>
+      <if test="alumniGrade != null">
+        alumni_grade,
+      </if>
+      <if test="alumniMajor != null">
+        alumni_major,
+      </if>
+      <if test="alumniCity != null">
+        alumni_city,
+      </if>
+      <if test="alumniPhone != null">
+        alumni_phone,
+      </if>
+      <if test="alumniMail != null">
+        alumni_mail,
+      </if>
+      <if test="alumniCompany != null">
+        alumni_company,
+      </if>
+      <if test="alumniMotto != null">
+        alumni_motto,
+      </if>
+      <if test="alumniClass != null">
+        alumni_class,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="alumniNumber != null">
+        #{alumniNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniName != null">
+        #{alumniName,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniGender != null">
+        #{alumniGender,jdbcType=CHAR},
+      </if>
+      <if test="alumniGrade != null">
+        #{alumniGrade,jdbcType=CHAR},
+      </if>
+      <if test="alumniMajor != null">
+        #{alumniMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniCity != null">
+        #{alumniCity,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniPhone != null">
+        #{alumniPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniMail != null">
+        #{alumniMail,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniCompany != null">
+        #{alumniCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniMotto != null">
+        #{alumniMotto,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniClass != null">
+        #{alumniClass,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atom.alumni.domain.Alumni">
+    <!--@mbg.generated-->
+    update alumni
+    <set>
+      <if test="alumniName != null">
+        alumni_name = #{alumniName,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniGender != null">
+        alumni_gender = #{alumniGender,jdbcType=CHAR},
+      </if>
+      <if test="alumniGrade != null">
+        alumni_grade = #{alumniGrade,jdbcType=CHAR},
+      </if>
+      <if test="alumniMajor != null">
+        alumni_major = #{alumniMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniCity != null">
+        alumni_city = #{alumniCity,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniPhone != null">
+        alumni_phone = #{alumniPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniMail != null">
+        alumni_mail = #{alumniMail,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniCompany != null">
+        alumni_company = #{alumniCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniMotto != null">
+        alumni_motto = #{alumniMotto,jdbcType=VARCHAR},
+      </if>
+      <if test="alumniClass != null">
+        alumni_class = #{alumniClass,jdbcType=INTEGER},
+      </if>
+    </set>
+    where alumni_number = #{alumniNumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atom.alumni.domain.Alumni">
+    <!--@mbg.generated-->
+    update alumni
+    set alumni_name = #{alumniName,jdbcType=VARCHAR},
+      alumni_gender = #{alumniGender,jdbcType=CHAR},
+      alumni_grade = #{alumniGrade,jdbcType=CHAR},
+      alumni_major = #{alumniMajor,jdbcType=VARCHAR},
+      alumni_city = #{alumniCity,jdbcType=VARCHAR},
+      alumni_phone = #{alumniPhone,jdbcType=VARCHAR},
+      alumni_mail = #{alumniMail,jdbcType=VARCHAR},
+      alumni_company = #{alumniCompany,jdbcType=VARCHAR},
+      alumni_motto = #{alumniMotto,jdbcType=VARCHAR},
+      alumni_class = #{alumniClass,jdbcType=INTEGER}
+    where alumni_number = #{alumniNumber,jdbcType=VARCHAR}
+  </update>
+  <select id="findByName" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from alumni
+  where alumni_name=#{name,jdbcType=VARCHAR}
+</select>
+<select id="getAllAlumni" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from alumni
+</select>
+</mapper>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atom.alumni.mapper.ClassMapper">
+  <resultMap id="BaseResultMap" type="com.atom.alumni.domain.Class">
+    <!--@mbg.generated-->
+    <!--@Table `class`-->
+    <id column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="class_grade" jdbcType="CHAR" property="classGrade" />
+    <result column="class_class" jdbcType="CHAR" property="classClass" />
+    <result column="class_major" jdbcType="VARCHAR" property="classMajor" />
+    <result column="class_creator" jdbcType="VARCHAR" property="classCreator" />
+    <result column="class_number_of_member" jdbcType="INTEGER" property="classNumberOfMember" />
+    <result column="class_introduction" jdbcType="VARCHAR" property="classIntroduction" />
+    <result column="class_create_time" jdbcType="DATE" property="classCreateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    class_id, class_grade, class_class, class_major, class_creator, class_number_of_member, 
+    class_introduction, class_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `class`
+    where class_id = #{classId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from `class`
+    where class_id = #{classId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="class_id" keyProperty="classId" parameterType="com.atom.alumni.domain.Class" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `class` (class_grade, class_class, class_major, 
+      class_creator, class_number_of_member, class_introduction, 
+      class_create_time)
+    values (#{classGrade,jdbcType=CHAR}, #{classClass,jdbcType=CHAR}, #{classMajor,jdbcType=VARCHAR}, 
+      #{classCreator,jdbcType=VARCHAR}, #{classNumberOfMember,jdbcType=INTEGER}, #{classIntroduction,jdbcType=VARCHAR}, 
+      #{classCreateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" keyColumn="class_id" keyProperty="classId" parameterType="com.atom.alumni.domain.Class" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `class`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classGrade != null">
+        class_grade,
+      </if>
+      <if test="classClass != null">
+        class_class,
+      </if>
+      <if test="classMajor != null">
+        class_major,
+      </if>
+      <if test="classCreator != null">
+        class_creator,
+      </if>
+      <if test="classNumberOfMember != null">
+        class_number_of_member,
+      </if>
+      <if test="classIntroduction != null">
+        class_introduction,
+      </if>
+      <if test="classCreateTime != null">
+        class_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classGrade != null">
+        #{classGrade,jdbcType=CHAR},
+      </if>
+      <if test="classClass != null">
+        #{classClass,jdbcType=CHAR},
+      </if>
+      <if test="classMajor != null">
+        #{classMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="classCreator != null">
+        #{classCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="classNumberOfMember != null">
+        #{classNumberOfMember,jdbcType=INTEGER},
+      </if>
+      <if test="classIntroduction != null">
+        #{classIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="classCreateTime != null">
+        #{classCreateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atom.alumni.domain.Class">
+    <!--@mbg.generated-->
+    update `class`
+    <set>
+      <if test="classGrade != null">
+        class_grade = #{classGrade,jdbcType=CHAR},
+      </if>
+      <if test="classClass != null">
+        class_class = #{classClass,jdbcType=CHAR},
+      </if>
+      <if test="classMajor != null">
+        class_major = #{classMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="classCreator != null">
+        class_creator = #{classCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="classNumberOfMember != null">
+        class_number_of_member = #{classNumberOfMember,jdbcType=INTEGER},
+      </if>
+      <if test="classIntroduction != null">
+        class_introduction = #{classIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="classCreateTime != null">
+        class_create_time = #{classCreateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where class_id = #{classId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atom.alumni.domain.Class">
+    <!--@mbg.generated-->
+    update `class`
+    set class_grade = #{classGrade,jdbcType=CHAR},
+      class_class = #{classClass,jdbcType=CHAR},
+      class_major = #{classMajor,jdbcType=VARCHAR},
+      class_creator = #{classCreator,jdbcType=VARCHAR},
+      class_number_of_member = #{classNumberOfMember,jdbcType=INTEGER},
+      class_introduction = #{classIntroduction,jdbcType=VARCHAR},
+      class_create_time = #{classCreateTime,jdbcType=DATE}
+    where class_id = #{classId,jdbcType=INTEGER}
+  </update>
+    <select id="findByName" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from class
+  where class_class=#{name,jdbcType=VARCHAR}
+</select>
+<select id="getAllClass" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from class
+</select>
+</mapper>
