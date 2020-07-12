@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atom.alumni.mapper.MycommentMapper">
+  <resultMap id="BaseResultMap" type="com.atom.alumni.domain.Mycomment">
+    <id column="mycomment_id" jdbcType="INTEGER" property="mycommentId" />
+    <result column="mycomment_content" jdbcType="VARCHAR" property="mycommentContent" />
+    <result column="mycomment_publish_time" jdbcType="TIMESTAMP" property="mycommentPublishTime" />
+    <result column="mycomment_post" jdbcType="INTEGER" property="mycommentPost" />
+    <result column="mycomment_parent" jdbcType="INTEGER" property="mycommentParent" />
+    <result column="mycomment_publisher" jdbcType="VARCHAR" property="mycommentPublisher" />
+    <result column="mycomment_delete" jdbcType="CHAR" property="mycommentDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mycomment_id, mycomment_content, mycomment_publish_time, mycomment_post, mycomment_parent, 
+    mycomment_publisher, mycomment_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mycomment
+    where mycomment_id = #{mycommentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mycomment
+    where mycomment_id = #{mycommentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="mycomment_id" keyProperty="mycommentId" parameterType="generator.Mycomment" useGeneratedKeys="true">
+    insert into mycomment (mycomment_content, mycomment_publish_time, 
+      mycomment_post, mycomment_parent, mycomment_publisher, 
+      mycomment_delete)
+    values (#{mycommentContent,jdbcType=VARCHAR}, #{mycommentPublishTime,jdbcType=TIMESTAMP}, 
+      #{mycommentPost,jdbcType=INTEGER}, #{mycommentParent,jdbcType=INTEGER}, #{mycommentPublisher,jdbcType=VARCHAR}, 
+      #{mycommentDelete,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="mycomment_id" keyProperty="mycommentId" parameterType="generator.Mycomment" useGeneratedKeys="true">
+    insert into mycomment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mycommentContent != null">
+        mycomment_content,
+      </if>
+      <if test="mycommentPublishTime != null">
+        mycomment_publish_time,
+      </if>
+      <if test="mycommentPost != null">
+        mycomment_post,
+      </if>
+      <if test="mycommentParent != null">
+        mycomment_parent,
+      </if>
+      <if test="mycommentPublisher != null">
+        mycomment_publisher,
+      </if>
+      <if test="mycommentDelete != null">
+        mycomment_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mycommentContent != null">
+        #{mycommentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mycommentPublishTime != null">
+        #{mycommentPublishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mycommentPost != null">
+        #{mycommentPost,jdbcType=INTEGER},
+      </if>
+      <if test="mycommentParent != null">
+        #{mycommentParent,jdbcType=INTEGER},
+      </if>
+      <if test="mycommentPublisher != null">
+        #{mycommentPublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="mycommentDelete != null">
+        #{mycommentDelete,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generator.Mycomment">
+    update mycomment
+    <set>
+      <if test="mycommentContent != null">
+        mycomment_content = #{mycommentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mycommentPublishTime != null">
+        mycomment_publish_time = #{mycommentPublishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mycommentPost != null">
+        mycomment_post = #{mycommentPost,jdbcType=INTEGER},
+      </if>
+      <if test="mycommentParent != null">
+        mycomment_parent = #{mycommentParent,jdbcType=INTEGER},
+      </if>
+      <if test="mycommentPublisher != null">
+        mycomment_publisher = #{mycommentPublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="mycommentDelete != null">
+        mycomment_delete = #{mycommentDelete,jdbcType=CHAR},
+      </if>
+    </set>
+    where mycomment_id = #{mycommentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generator.Mycomment">
+    update mycomment
+    set mycomment_content = #{mycommentContent,jdbcType=VARCHAR},
+      mycomment_publish_time = #{mycommentPublishTime,jdbcType=TIMESTAMP},
+      mycomment_post = #{mycommentPost,jdbcType=INTEGER},
+      mycomment_parent = #{mycommentParent,jdbcType=INTEGER},
+      mycomment_publisher = #{mycommentPublisher,jdbcType=VARCHAR},
+      mycomment_delete = #{mycommentDelete,jdbcType=CHAR}
+    where mycomment_id = #{mycommentId,jdbcType=INTEGER}
+  </update>
+</mapper>
