@@ -1,6 +1,10 @@
 <template>
   <el-container>
-    <el-header><p>校友录</p></el-header>
+    <el-header>
+      <router-link to="/Post">
+        <el-button type="success" icon="el-icon-circle-plus-outline" size="large" round>论坛</el-button>
+      </router-link>
+      <p>校友录</p></el-header>
     <el-main>
       <!--新增按钮-->
       <el-col :span="2" class="grid">
@@ -8,7 +12,7 @@
           <el-button type="success" icon="el-icon-circle-plus-outline" size="large" round>新增</el-button>
         </router-link>
       </el-col>
-      <el-table :summary-method="getSummaries" show-summary stripe ref="multipleTable" :data="list.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))" style="width: 100%" :default-sort = "{prop: 'id', order: 'descending'}" max-height="550" @selection-change="handleSelectionChange">
+      <el-table :summary-method="getSummaries" show-summary stripe ref="multipleTable" :data="list.filter(data => !search || data.alumniName.toLowerCase().includes(search.toLowerCase()))" style="width: 100%" :default-sort = "{prop: 'id', order: 'descending'}" max-height="550" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55">
         </el-table-column>
         <el-table-column fixed prop="alumniNumber" label="学号" sortable width="180" column-key="alumni_number"
