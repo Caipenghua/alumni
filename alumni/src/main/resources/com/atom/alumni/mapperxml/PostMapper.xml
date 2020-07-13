@@ -21,11 +21,17 @@
     from post
     where post_id = #{postId,jdbcType=INTEGER}
   </select>
+  <select id="selectByAlumniNumber" resultType="com.atom.alumni.domain.Post">
+    select * from post where post_publisher=#{alumniNumber}
+  </select>
+  <select id="getPostList" resultType="com.atom.alumni.domain.Post">
+    select * from post;
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from post
     where post_id = #{postId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="post_id" keyProperty="postId" parameterType="generator.Post" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="post_id" keyProperty="postId" parameterType="com.atom.alumni.domain.Post" useGeneratedKeys="true">
     insert into post (post_title, post_key_word, post_content, 
       post_publish_time, post_publisher, post_delete
       )
@@ -33,7 +39,7 @@
       #{postPublishTime,jdbcType=TIMESTAMP}, #{postPublisher,jdbcType=VARCHAR}, #{postDelete,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="post_id" keyProperty="postId" parameterType="generator.Post" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="post_id" keyProperty="postId" parameterType="com.atom.alumni.domain.Post" useGeneratedKeys="true">
     insert into post
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="postTitle != null">
@@ -76,7 +82,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="generator.Post">
+  <update id="updateByPrimaryKeySelective" parameterType="com.atom.alumni.domain.Post">
     update post
     <set>
       <if test="postTitle != null">
@@ -100,7 +106,7 @@
     </set>
     where post_id = #{postId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="generator.Post">
+  <update id="updateByPrimaryKey" parameterType="com.atom.alumni.domain.Post">
     update post
     set post_title = #{postTitle,jdbcType=VARCHAR},
       post_key_word = #{postKeyWord,jdbcType=VARCHAR},

@@ -20,11 +20,20 @@
     from mycomment
     where mycomment_id = #{mycommentId,jdbcType=INTEGER}
   </select>
+  <select id="selectIdFromPostId" parameterType="Integer" resultType="Integer">
+    select mycomment_id from mycomment where mycomment_post=#{postId}
+  </select>
+  <select id="selectByPostId" resultType="com.atom.alumni.domain.Mycomment">
+    select *
+    from mycomment
+    where mycomment_post = #{id}
+    and mycomment_delete = false
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from mycomment
     where mycomment_id = #{mycommentId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="mycomment_id" keyProperty="mycommentId" parameterType="generator.Mycomment" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="mycomment_id" keyProperty="mycommentId" parameterType="com.atom.alumni.domain.Mycomment" useGeneratedKeys="true">
     insert into mycomment (mycomment_content, mycomment_publish_time, 
       mycomment_post, mycomment_parent, mycomment_publisher, 
       mycomment_delete)
@@ -32,7 +41,7 @@
       #{mycommentPost,jdbcType=INTEGER}, #{mycommentParent,jdbcType=INTEGER}, #{mycommentPublisher,jdbcType=VARCHAR}, 
       #{mycommentDelete,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="mycomment_id" keyProperty="mycommentId" parameterType="generator.Mycomment" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="mycomment_id" keyProperty="mycommentId" parameterType="com.atom.alumni.domain.Mycomment" useGeneratedKeys="true">
     insert into mycomment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="mycommentContent != null">
@@ -75,7 +84,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="generator.Mycomment">
+  <update id="updateByPrimaryKeySelective" parameterType="com.atom.alumni.domain.Mycomment">
     update mycomment
     <set>
       <if test="mycommentContent != null">
@@ -99,7 +108,7 @@
     </set>
     where mycomment_id = #{mycommentId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="generator.Mycomment">
+  <update id="updateByPrimaryKey" parameterType="com.atom.alumni.domain.Mycomment">
     update mycomment
     set mycomment_content = #{mycommentContent,jdbcType=VARCHAR},
       mycomment_publish_time = #{mycommentPublishTime,jdbcType=TIMESTAMP},

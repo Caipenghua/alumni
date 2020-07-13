@@ -2,6 +2,8 @@ package com.atom.alumni.mapper;
 
 import com.atom.alumni.domain.Post;
 
+import java.util.List;
+
 public interface PostMapper {
     int deleteByPrimaryKey(Integer postId);
 
@@ -14,4 +16,8 @@ public interface PostMapper {
     int updateByPrimaryKeySelective(Post record);
 
     int updateByPrimaryKey(Post record);
+
+    List<Post> selectByAlumniNumber(Integer alumniNumber);
+
+    List<Post> getPostList();
 }
